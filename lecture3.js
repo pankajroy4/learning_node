@@ -91,6 +91,21 @@ The fs module provides 3 such methods , but the 3rd one is related with promise,
     If writing fails, it throw expectation.
     for example when wrong path given.
 */
+    // const fs = require('fs')
+    // const path = "./text_files/message.txt" 
+    // const str = "Welocme to Node.js"
+    // let today = new Date();
+    // let currentDateTime = today.toLocaleDateString() + "," + today.toLocaleTimeString()
+
+    // let msg =  str + "\n" + currentDateTime
+    // fs.writeFileSync(path, msg) //We will have to handle exceptation later usign try catch
+    // console.log("File saved !")
+    // console.log("Bye......")
+
+
+  // 2. writeFile(path, data, options, callback)   
+    // callback: It execute after the operation, in both case either writing happens successfully or writing fails. 
+
     const fs = require('fs')
     const path = "./text_files/message.txt" 
     const str = "Welocme to Node.js"
@@ -98,11 +113,13 @@ The fs module provides 3 such methods , but the 3rd one is related with promise,
     let currentDateTime = today.toLocaleDateString() + "," + today.toLocaleTimeString()
 
     let msg =  str + "\n" + currentDateTime
-    fs.writeFileSync(path, msg)
-    console.log("File saved !")
-
-
-  // 2. writeFile(filename, data, options, callback)   
-
-
-  // 51 Minutes
+    fs.writeFile(path, msg, (error)=>{
+      if(error){
+        console.log("Error in file writing or saving" + error)
+        throw error; //To know what actually problem occured
+      }
+      else{
+        console.log("File saved !")
+      }
+    })
+    console.log("Bye.....")
