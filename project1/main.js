@@ -6,14 +6,20 @@ const arr_of_items = [
   { name: "Butter", qty: 3, price: 250 },
 ]
 
-const path = "../text_files/groceries.csv"
+const path = "./text_files/groceries.csv"
 const headers = ['name', 'qty', 'price']
-
-try{
-  addHeaders(path,headers)
-  addItems(path, arr_of_items)
-  // showItems(path)
-}catch(error){
-  console.log(error)
+let result;
+result = addHeaders(path,headers);
+if (result){
+  console.log("headers added successfully!")
+  result = addItems(path, arr_of_items)
+  if(result){
+    console.log("Items added successfully!")
+    showItems(path)
+  }
+  else{
+    console.log("Cancelling showing items")
+  }
+}else{
+  console.log("Cancelling adding items and showing items")
 }
-
