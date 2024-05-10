@@ -3,10 +3,8 @@ let status = true;
 
 function addItems(path, items) {
   try {
-    items.forEach((item) => {
-      let json_str = JSON.stringify(item);
-      fs.appendFileSync(path, json_str);
-    });
+    let json_str = JSON.stringify(items);
+    fs.writeFileSync(path, json_str);
   } catch (err) {
     console.log("Error in adding the items: " + err);
     status = false;
@@ -15,15 +13,22 @@ function addItems(path, items) {
   }
 }
 
-// function showItems(path) {
-//   try {
-//     const text = fs.readFileSync(path, "utf-8");
-//     console.log("File read successfully!");
-//     console.log(text);
-//   } catch (err) {
-//     console.log("Error in showing items..");
-//   }
-// }
+function showItems(path) {
+  try {
+    const json_str = fs.readFileSync(path, "utf-8");
+    console.log("File read successfully!");
+    const itemsArr = JSON.parse(json_str)
+
+    let total_bill = 0
+    itemsArr.forEach((item)=>{
+      console.log(`name: ${item.name}, Quantity: ${item.qty}, Price: ${item.price}`);
+      total_bill += item.qty * item.price
+    })
+    console.log("Final Bill: " + total_bill);
+  } catch (err) {
+    console.log("Error in showing items..");
+  }
+}
 
 let result;
 const path = "./text_files/groceries.json";
@@ -37,5 +42,5 @@ const arr_of_items = [
 result = addItems(path, arr_of_items);
 if (result) {
   console.log("Items added successfully!");
-  // showItems(path);
+  showItems(path);
 }

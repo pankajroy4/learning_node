@@ -106,20 +106,41 @@ The fs module provides 3 such methods , but the 3rd one is related with promise,
   // 2. writeFile(path, data, options, callback)   
     // callback: It execute after the operation, in both case either writing happens successfully or writing fails. 
 
-    const fs = require('fs')
-    const path = "./text_files/message.txt" 
-    const str = "Welocme to Node.js"
-    let today = new Date();
-    let currentDateTime = today.toLocaleDateString() + "," + today.toLocaleTimeString()
+    // const fs = require('fs')
+    // const path = "./text_files/message.txt" 
+    // const str = "Welocme to Node.js"
+    // let today = new Date();
+    // let currentDateTime = today.toLocaleDateString() + "," + today.toLocaleTimeString()
 
-    let msg =  str + "\n" + currentDateTime
-    fs.writeFile(path, msg, (error)=>{
-      if(error){
-        console.log("Error in file writing or saving" + error)
-        throw error; //To know what actually problem occured
-      }
-      else{
-        console.log("File saved !")
-      }
-    })
-    console.log("Bye.....")
+    // let msg =  str + "\n" + currentDateTime
+    // fs.writeFile(path, msg, (error)=>{
+    //   if(error){
+    //     console.log("Error in file writing or saving" + error)
+    //     throw error; //To know what actually problem occured
+    //   }
+    //   else{
+    //     console.log("File saved !")
+    //   }
+    // })
+    // console.log("Bye.....")
+
+// ------------------------------------
+
+const path = require('path')
+const fs = require('fs')
+const filename = path.join(__dirname, "text_files", "message.txt") 
+const str = "Welocme to Node.js"
+let today = new Date();
+let currentDateTime = today.toLocaleDateString() + "," + today.toLocaleTimeString()
+
+let msg =  str + "\n" + currentDateTime
+fs.writeFile(filename, msg, (error)=>{
+  if(error){
+    console.log("Error in file writing or saving" + error)
+    throw error; 
+  }
+  else{
+    console.log("File saved !")
+  }
+})
+console.log("Bye.....")
