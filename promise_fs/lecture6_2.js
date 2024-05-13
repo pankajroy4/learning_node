@@ -24,9 +24,12 @@ Some important methods of promises object:
 access(), writeFile(), appendFile(), readFile(), unlink(), mkdir(), readdir(), chmod() etc
 
 1. fsPromises.access(path, mode)
-   mode: it is an integer value that denotes the permission to be tested for, it can have the values fs.constants.F_OK, fs.constants.W_OK and fs.constants.X_OK.
+   mode: it is an integer value that denotes the permission to be tested for, it can have the values fs.constants.F_OK, fs.constants.W_OK ,fs.constants.R_OK and fs.constants.X_OK.
    Its default value is fs.constants.F_OK
    fs.constants.F_OK : only check availability
+   fs.constants.W_OK: check for writing allowed or not
+   fs.constants.R_OK: check for reading allowed or not
+   fs.constants.X_OK : check that execution allowed or not(executing the file)
 
    return value: Return a promise object with:
     * 'undefined' if resolved 
