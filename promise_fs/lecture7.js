@@ -81,35 +81,91 @@ As we know for access() mode can be : fs.constants.F_OK etc and for chmod() mode
 
 NOTE: We can combine more than one permission using bit wise or i.e | , single pipe, and pass it to argument as mode to access().
 */
-const fs = require("fs");
+// const fs = require("fs");
+// const fsPromises = require("fs/promises");
+// const path = "./text_files/message.txt";
+
+// async function checkPermission() {
+//   try{
+//     await fsPromises.access(path, fs.constants.F_OK | fs.constants.W_OK)
+//     console.log("File is present and writing allowed!")
+
+//     await fsPromises.chmod(path, fs.constants.S_IRUSR)
+//     console.log("File permission set to read only!")
+
+//     await fsPromises.access(path, fs.constants.W_OK)
+//     console.log("File is present and writing allowed!")
+//   }catch(err){
+//     switch(err.code) {
+//       case "ENOENT":
+//         console.log("File not present");
+//         break;
+//       case "EPERM":
+//         console.log("Writing permission denied!");
+//         break;
+//       default:
+//         console.log("Some exception occured: " + err)
+//     }
+//   }
+// }
+
+// checkPermission()
+
+/*
+Writing to file using promise API
+=====================================
+3. fsPromises.writeFile(path, data, options)
+      options: It is an string or object that can be used to specify optional parameters that will affect the output. it contains encoding, mode and flag values.
+
+      return value: Return a Promise object with:
+        * 'undefined' : if resolved
+        * 'error object' : if rejected
+*/
+
+// const fsPromises = require('fs/promises')
+// const path = "./text_files/message2.txt"
+
+// let str = "Welcome to Node.js"
+// let today = new Date();
+// let currentDateTime = today.toLocaleDateString() + "," + today.toLocaleTimeString()
+// let msg =  str + "\n" + currentDateTime
+
+// async function writeData(path, data){
+//   try{
+//     await fsPromises.writeFile(path, data);
+//     console.log("File saved successfully!")
+//   }catch(err){
+//     console.log("Error in writing file: " +err)
+//   }
+// }
+
+// writeData(path, msg)
+// console.log("Done..")
+
+/*
+Reading from file using promise API
+=====================================
+3. fsPromises.readFile(path, options)
+      options: It is an string or object that can be used to specify optional parameters that will affect the output. it contains encoding, mode and flag values.
+
+      return value: Return a Promise object with:
+        * 'file data' : if resolved
+        * 'error object' : if rejected
+      Note: Here we will get file data instead of undefined on resolving returned promise if it get resolved.
+*/
+
 const fsPromises = require("fs/promises");
-const path = "./text_files/message.txt";
+const path = "./text_files/message2.txt";
 
-async function checkPermission() {
-  try{
-    await fsPromises.access(path, fs.constants.F_OK | fs.constants.W_OK)
-    console.log("File is present and writing allowed!")
-
-    await fsPromises.chmod(path, fs.constants.S_IRUSR)
-    console.log("File permission set to read only!")
-
-    await fsPromises.access(path, fs.constants.W_OK)
-    console.log("File is present and writing allowed!")
-  }catch(err){
-    switch(err.code) {
-      case "ENOENT":
-        console.log("File not present");
-        break;
-      case "EPERM":
-        console.log("Writing permission denied!");
-        break;
-      default: 
-        console.log("Some exception occured: " + err)
-    }
+async function readData(path) {
+  try {
+    let file_data = await fsPromises.readFile(path, "utf-8");
+    console.log("File read successfully!");
+    console.log(file_data);
+  } catch (err) {
+    console.log("Error in reading file: " + err);
   }
 }
 
-checkPermission()
-
-
-// TIME : 31 minutes
+readData(path);
+console.log("Done..");
