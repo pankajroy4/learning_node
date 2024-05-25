@@ -1,0 +1,14 @@
+{
+  "name": "cmd_line_arg",
+  "version": "1.0.0",
+  "description": "learning command line arguments with chalk",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Pankaj Roy",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^4.1.2"
+  }
+}
