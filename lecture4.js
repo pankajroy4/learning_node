@@ -55,7 +55,7 @@
 The third parameter of the writeFileSync() or writeFile() method is an object with three optional properties, Each property has their own default values:
   1.encoding : form of data writing in file eg: binary or textual: utf8(default) , base64 that is binary etc.
   2.mode : It deals with permissions of file for the newly created File. default value(0o666) in octal
-  3.flag : It controls how the file will be created and written on. Default value of flag is 'w', ehich creates the file(if not exist) or overwrites the file with new data.
+  3.flag : It controls how the file will be created and written on. Default value of flag is 'w', which creates the file(if not exist) or overwrites the file with new data.
   Other flags are:
                 'a' : creates the file(if not exist) or appends to the existing data.
                 However,we also have a different method for appending callled appendFile().

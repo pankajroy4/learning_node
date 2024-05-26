@@ -6,8 +6,8 @@ So to write object in fileURLToPath, we have to convert the object into JSON str
 It accepts js object and return json string which can easily we written in file.
 
 While reading the file, as we know, readFileSync() or readFile() will return string or buffer object.
-We can easily covert this string to js object using JSON.parse().
-If reading file returns buffer objetc then first we have to use toString(), then we can use JSON.parse() to get js Object.  
+We can easily convert this string to js object using JSON.parse().
+If reading file returns buffer object then first we have to use toString(), then we can use JSON.parse() to get js Object.  
 */
 
 // const fs = require("fs");

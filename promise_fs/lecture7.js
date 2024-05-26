@@ -76,7 +76,7 @@ Note: The WINDOW platform only support the changing of the write permission. It 
 // setPermission(path)
 /*
  -------------------------------------------
-NOTE: Both the function chmod(path, mode) and access(path, mode) accepts mode as 2nd argument but they are diiferent for both.
+NOTE: Both the function chmod(path, mode) and access(path, mode) accepts mode as 2nd argument but they are different for both.
 As we know for access() mode can be : fs.constants.F_OK etc and for chmod() mode can be fs.constants.S_IRUSR etc 
 
 NOTE: We can combine more than one permission using bit wise or i.e | , single pipe, and pass it to argument as mode to access().

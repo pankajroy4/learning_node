@@ -42,8 +42,8 @@ To use a local module we need to two steps:
               } 
 
   As we can see,'exports' it self is an object.
-  It contains all of the variables, objects, and functions from our current module that we want to export.
-  Also, we can add other(current module) objects to it that we want to be available to oother files.
+  The module object contains all of the variables, objects, and functions from our current module that we want to export.
+  Also, we can add other(current module) objects to it that we want to be available to other files.
   So we can use the 'exports' property of module object of the file to export that file/file contents.
               
   we can assign anything to 'exports':

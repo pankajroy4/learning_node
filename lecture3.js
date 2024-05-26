@@ -10,7 +10,7 @@
 /*
 2. Callback API 
    Interact with file system in an asynchronous way.
-   Each of the callback API function accepts a callbak function that is invoked when the operation(with file) is completed.  
+   Each of the callback API function accepts a callback function that is invoked when the operation(with file) is completed.  
 */
   //  const fs = require('fs')
   //  fs.readFile(path, (err, data) => {
