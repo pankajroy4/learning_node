@@ -1,0 +1,18 @@
+{
+  "type": "module",
+  "name": "qrcodegenerator",
+  "version": "1.0.0",
+  "description": "QR-Code generator app",
+  "main": "qrgenerator.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Pankaj Roy",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "inquirer": "^9.2.22",
+    "qr-image": "^3.2.0",
+    "validator": "^13.12.0"
+  }
+}
