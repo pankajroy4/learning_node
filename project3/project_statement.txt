@@ -1,0 +1,73 @@
+Develop a QR-Code generator app.
+Following are the tasks this app will perform:
+  1. Ask the user to input a URL.
+  2.Validate the URL.
+  3.If it is invalid then display appropriate error message and terminate.
+  4.If URL is valid, then ask the user what type of QR Code image he wants to generate [png, svg, pdf]
+  5.Validate the choice.
+  6.As per the choice of image type, generate a QR Code image of the types URL by the same name as the main url.
+  example: url: www.amazon.in 
+          qr image file name: amazon_img.png or
+                              amazon_img.svg or 
+                              amazon_img.pdf 
+  7.Finally it should save the generated QR Code file in a folder called qrcodes and the URL in a file called URL.text in the same folder.
+
+Make sure to display all the error message in RED and all the success messages in green color.
+
+Use async-await wherever posssible.
+
+Your app should have following functions:
+  1.getUrl(): For accepting a URL as input from the user. It should return the URL typed by the user or throw exception in case any error.
+
+  2.getImageType(): For asking the user to select an imageType. It should return the selected image type or throw exception in case of aany error.
+
+  3.generateQRCode(): Must accept 2 arguments called url and image type and generate and save the QR code. It should return filename of the QR Code or throw exception in case of any error.
+
+  4.writeToFile(): Must accept 2 arguments called filePath and url and should write url in the given filePath. It should throw exception in case of any error.
+
+  5.dotask(): To call the above functions and display the message of success or error accordingly.
+
+NOTE:
+  Use the 3rd-party module 'qr-image' to generate qr-code.
+  Visit: https://www.npmjs.com/package/qr-image
+  Use EJS module system , i.e import syntax.
+
+The modules which you will need are:
+  fs, validator, chalk, inquirer, path, qr-image
+
+PROJECT 4:
+=========
+Re-desing the QR-Code generator project by dividing it inot 4 modules.
+1.userinput.js
+  Containing functions for accepting URL and imagetype.
+2.qrcode.js
+  Containing functions for generating and saving the QR Code.
+3.filewriter.js 
+  Containing function for writing the url in the file.
+4.app.js 
+  For calling all the functions from the above mentioned modules.
+Here you will need to use commonJS module system because for local modules we can't use import
+
+
+====================================================================================================
+
+function extractWebsiteName(url) {
+  if (url.startsWith("http://")) {
+    url = url.slice(7);
+  } else if (url.startsWith("https://")) {
+    url = url.slice(8);
+  }
+
+  if (url.startsWith("www.")) {
+    url = url.slice(4);
+  }
+
+  let domainName = url.split(".")[0];
+
+  return domainName;
+}
+
+console.log(extractWebsiteName("https://www.amazon.in"));
+console.log(extractWebsiteName("http://www.amazon.in"));
+console.log(extractWebsiteName("www.amazon.in"));
+console.log(extractWebsiteName("amazon.in"));

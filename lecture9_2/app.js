@@ -103,7 +103,7 @@ Note:
 
       This object/function prints the message which is passed to it and pause the console to accept input and it return the inputted values as a string.
 
-      Note: It takes input as string.
+      Note: The return value of prompt-sync() method is always a string.
       This is just like input() function of python.
 
 
