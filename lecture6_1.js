@@ -7,6 +7,22 @@
 
     console.log(__dirname) 
     output: /home/ubuntu/PP_PROJECT/SCA/learning_node
+
+Special Note:
+================
+  __dirname is a global variable in CommonJS modules, but not in ECMAScript modules (ESM). If you are using ESM (for example, if your package.json contains "type": "module" or if your file has a .mjs extension), __dirname is not available by default.
+
+  To fix this, you can use the import.meta.url to get the current directory in ESM.
+  Import the necessary modules using import instead of require.
+  Use import.meta.url to create the equivalent of __dirname.
+    Example:
+          import path from 'path';
+          import { fileURLToPath } from 'url';
+          const __filename = fileURLToPath(import.meta.url);
+          const __dirname = path.dirname(__filename);
+
+          console.log(__dirname);
+
   2.) ./
     It also holds the absolute path of the directory containing the current executing file. But it causes poor code readability.
 
