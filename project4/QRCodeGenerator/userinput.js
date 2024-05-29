@@ -10,7 +10,7 @@ async function getUrl() {
     ]);
     return url.url;
   } catch (err) {
-    throw Error(err);
+    throw Error(`Error in inputting url: ${err.message}`);
   }
 }
 
@@ -27,7 +27,7 @@ async function getImageType() {
     ]);
     return type.imageType;
   } catch (err) {
-    throw Error(err);
+    throw Error(`Error in inputting image type: ${err.message}`);
   }
 }
 

@@ -1,3 +1,5 @@
 www.amazon.in
 https://www.flipkart.com
 http://www.myntra.com
+www.mybook.com
+https://facebook.com

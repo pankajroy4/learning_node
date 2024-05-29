@@ -20,11 +20,14 @@ async function QRCodeGenerator() {
     let typeArr = ["png", "svg", "pdf"];
 
     if (!typeArr.includes(imageType)) {
-      throw Error("Error while asking QR-image types!");
+      throw Error("Invalid QR-image types!");
     }
     console.log(chalk.blue(`You selected: ${imageType}`));
 
     let qrFilename = await generateQRCode(url, imageType);
+    if(qrFilename == ""){
+      throw Error("Could not generate QR code")
+    }
     console.log(chalk.green(`QR Code generated and saved in ${qrFilename}`));
 
     let f_path = path.resolve("./qrcodes");

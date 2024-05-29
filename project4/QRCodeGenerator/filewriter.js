@@ -5,7 +5,7 @@ async function writeToFile(filePath, url) {
     const data = url + "\n";
     await fsPromises.appendFile(filePath, data);
   } catch (err) {
-    throw Error(err);
+    throw Error(`Error in writing URL to text file: ${err.message}`);
   }
 }
 

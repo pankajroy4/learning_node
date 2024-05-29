@@ -16,7 +16,7 @@ async function getUrl() {
     ]);
     return url.url;
   } catch (err) {
-    throw Error(err);
+    throw Error(`Error in inputting url: ${err.message}`);
   }
 }
 
@@ -33,23 +33,26 @@ async function getImageType() {
     ]);
     return type.imageType;
   } catch (err) {
-    throw Error(err);
+    throw Error(`Error in inputting image type: ${err.message}`);
   }
 }
 
 function extractWebsiteName(url) {
-  if (url.startsWith("http://")) {
-    url = url.slice(7);
-  } else if (url.startsWith("https://")) {
-    url = url.slice(8);
+  let domainName = "";
+  let wwwIndex = url.indexOf("www");
+  if(wwwIndex == -1){
+    let dwFwIndex = url.indexOf("//")
+    if(dwFwIndex == -1){
+      dwFwIndex = 0;
+    }
+    else{
+      dwFwIndex += 2;
+    }
+    domainName = url.substring(dwFwIndex, url.indexOf("."))
+  }else{
+    let secondDot = url.indexOf(".", wwwIndex + 4)
+    domainName = url.substring(wwwIndex + 4, secondDot)
   }
-
-  if (url.startsWith("www.")) {
-    url = url.slice(4);
-  }
-
-  let domainName = url.split(".")[0];
-
   return domainName;
 }
 
@@ -58,7 +61,7 @@ async function writeToFile(filePath, url) {
     const data = url + "\n";
     await fsPromises.appendFile(filePath, data);
   } catch (err) {
-    throw Error(err);
+    throw Error(`Error in writing URL to text file: ${err.message}`);
   }
 }
 
@@ -70,13 +73,16 @@ async function generateQRCode(url, imageType) {
     let qrPath = path.resolve("./qrcodes");
     let filePath = path.join(qrPath, QRImageName);
 
-    await fsPromises.mkdir(qrPath, { recursive: true });
+    if(!fs.existsSync(qrPath)){
+      await fsPromises.mkdir(qrPath, { recursive: true });
+    }
     let qrImg = qr.image(url, { type: imageType });
-    qrImg.pipe(fs.createWriteStream(filePath));
+    let wrStream = fs.createWriteStream(filePath); //returns image buffer i.e stream object
+    qrImg.pipe(wrStream);
 
     return QRImageName;
   } catch (err) {
-    throw Error(err);
+    throw Error(`Error in generating QR-code: ${err.message}`);
   }
 }
 
@@ -93,11 +99,14 @@ async function doTask() {
     let typeArr = ["png", "svg", "pdf"];
 
     if (!typeArr.includes(imageType)) {
-      throw Error("Error while asking QR-image types!");
+      throw Error("Invalid QR-image types!");
     }
     console.log(chalk.blue(`You selected: ${imageType}`));
 
     let qrFilename = await generateQRCode(url, imageType);
+    if(qrFilename == ""){
+      throw Error("Could not generate QR code")
+    }
     console.log(chalk.green(`QR Code generated and saved in ${qrFilename}`));
 
     let f_path = path.resolve("./qrcodes");
@@ -111,3 +120,19 @@ async function doTask() {
 }
 
 doTask();
+
+
+/*
+NOTE:
+In this project we use:
+    let wrStream = fs.createWriteStream(filePath); //returns image buffer
+
+    This methods generate exceptions based on certain events.
+
+    This line may raise exception in many cases which is beyond to our control. It may raise exception when disk is locked, writing permission is denied, passed wrong path etc.
+    
+    So in these cases cause exception.
+    We can not handle such stream exception using try-catch.
+    To handle these types of exceptions , some concepts like event handling is used which we will learn later.
+    
+*/
