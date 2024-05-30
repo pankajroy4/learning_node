@@ -30,7 +30,7 @@ Package Manager:
             which will create a package.json file in the app.
             In this package.json file top level-dependencies are stored. Whenever we install a module it will automatically get updated.
     * When we will run the command npm init, it will ask some question , answer it or simply press enter.
-    * This file help when we host our project to remote repo and when someone downolad this repo and just run npm install then this all architecture from package.json file will be created.
+    * This file help when we host our project to remote repo and when someone downolad this repo and just run "npm install" then this all architecture from package.json file will be created.
  
     Now we can install any package in our app.
     eg:
