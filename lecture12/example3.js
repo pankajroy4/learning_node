@@ -49,6 +49,10 @@ In events module , the most important class in EventEmitter class.
 This class have many methods. The six mainly used methods are:
 
   1. addListener(event, listener) : Adds a listener to the listeners array for the specified event.
+    event: This is first argument and it is a string. We can pass any string i.e we decide the name of event. For example "newUser". This is case-sensative.
+    listener: This is a callback. It can be paramatrized or non-parametrized. It can accepts multiple arguments.
+    The argument to the callback can be an object also.
+
 
   2. on(event. listener) : It can also be called as an alias of addListener()
 
@@ -59,4 +63,8 @@ This class have many methods. The six mainly used methods are:
   5. removeListener(event, litener) : Removes a listener from the listener array for the specified event.
 
   6. removeAllListeners([event]) : Removes all listeners, of the specified event.
+
+
+  NOTE: An event can be emitted mutiple times.
+       We can register a single listener multiple times for an event. First registration do not repalce the another registration. If we want to unregister the any registration then we have to remove it using removeListener(). So we can say registrations are not replaced rather they are removed.
 */
