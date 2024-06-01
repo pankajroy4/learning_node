@@ -17,10 +17,17 @@ class Item extends EventEmitter {
 
   set price(price) {
     if (price > this.itemPrice) {
-      let oldPrice = this.itemPrice;
-      this.itemPrice = price;
-      this.emit("priceChanged", oldPrice);
+      let percent = (((price - this.itemPrice) * 100) / this.itemPrice).toFixed(
+        2
+      );
+      this.emit("priceChanged", {
+        name: this.itemName,
+        oldPrice: this.itemPrice,
+        newPrice: price,
+        increase: percent,
+      });
     }
+    this.itemPrice = price;
   }
 }
 
