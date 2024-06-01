@@ -1,0 +1,5 @@
+WAC called Item which should extends the EventEmitter class and provide 2 members called itemName of type string and itemPrice of type Number.
+provide following metods in your class:
+  *A parametrized constructor to initialize the members itemName and itemPrice
+  *Two getter properties for itemName and itemPrice.
+  *A setter property for itemPrice, which accepts a new price as argument and if the new price is more than the current price, then it should assign it to the current price and raise an event called priceChanged which should display itemName, old price, new price and percentahe by which price increased.
