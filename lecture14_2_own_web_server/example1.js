@@ -26,7 +26,7 @@ Steps needed to create web server using http:
 To create a web server using http module we need to take four steps:
     1. Import the http module, it will return an object called http, receive it.
 
-    2. Call the function createServer() of http object. This function returns the server object, receive it.
+    2. Call the function createServer() of http object. This function returns the server object, receive it. Professional developer receive it in a variable named as "app" or "server". 
 
     3. This server object fires an event called "connection". So we have create event handler. i.e we have to listen for the "connection" event.
     So using server object create an event-handler for "connection" event by calling the on() method.
@@ -49,7 +49,7 @@ Note:
 Example:
 
     const http = require("http");
-    const server = http.createServer();
+    const server = http.createServer();  //Later we will use "app" as variable name to receive server object.
 
     server.on("connection", (socket)=>{
       console.log("A new client arrived...", socket);
@@ -76,11 +76,11 @@ A better way:
 
 Example:
     const http = require("http");
-    const server = http.createServer((request, response)=>{
+    const app = http.createServer((request, response)=>{
       console.log("New request arrived...")
     });
 
-    server.listen(8000);
+    app.listen(8000);
     console.log("Server started and listening at port 8000");
 
 The argument to createServer() is a callback. Each callback should have a specific perpose. For example, We are developing an ECommerce app, this callback will do some particular task in this application, say for example Login/Register the user.
@@ -95,9 +95,9 @@ Example:
       console.log("New request arrived...")
     }
 
-    const server = http.createServer(requestListener);
+    const app = http.createServer(requestListener);
 
-    server.listen(8000);
+    app.listen(8000);
     console.log("Server started and listening at port 8000");
 
 ====================================================
