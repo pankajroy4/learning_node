@@ -26,8 +26,8 @@ const requestLinstener = (req, resp) => {
   }
 };
 
-const app = http.createServer(requestLinstener);
-app.listen(8000);
+const server = http.createServer(requestLinstener);
+server.listen(8000);
 console.log("Server started and listening at port 8000");
 
 /* 
